@@ -279,10 +279,10 @@ class FirestoreClient
         if ($this->structuredQuery) {
             return $this->structuredQuery;
         }
+        // TODO: Add Firestore Query
+        // $this->structuredQuery =new FirestoreQuery($this);
 
-        $this->structuredQuery = new FirestoreQuery($this);
-
-        return $this->structuredQuery;
+        // return $this->structuredQuery;
     }
 
     /**
