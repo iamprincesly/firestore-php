@@ -1,15 +1,20 @@
 {
-    "name": "ahsankhatri/firestore-php",
-    "description": "Firestore PHP Client",
+    "name": "bensontrent/firestore-php",
+    "description": "Firestore PHP Client without gRPC and support for Guzzle 7. Forked from archived project ahsankhatri/firestore-php",
     "keywords": [
         "php",
         "firestore",
         "firebase",
         "google"
     ],
-    "homepage": "https://github.com/ahsankhatri/firestore-php",
+    "homepage": "https://github.com/bensontrent/firestore-php",
     "license": "MIT",
     "authors": [
+         {
+            "name": "Benson Trent",
+            "email": "bensontrent@gmail.com",
+            "role": "Contributor"
+        },
         {
             "name": "Ahsaan Muhammad Yousuf",
             "email": "ahsankhatri1992@gmail.com",
