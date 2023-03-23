@@ -24,11 +24,13 @@ or install it by adding it to `composer.json` then run `composer update`
 
 ```javascript
 "require": {
-    "bensontrent/firestore-php": "^2.0",
+    "bensontrent/firestore-php": "^3.0",
 }
 ```
 
 ## Dependencies
+
+ - PHP 7.3 and above (PHP 8+ supported)
 
 The bindings require the following extensions in order to work properly:
 

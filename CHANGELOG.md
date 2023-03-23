@@ -2,6 +2,12 @@
 
 All notable changes to `Firestore PHP` will be documented in this file.
 
+## 3.0.0 - 2023-03-23
+ - Added support for Guzzle 7
+ - Added support for PHP 8
+ - Minimum requirement PHP 7.3
+ - Corrected several linting errors
+
 ## 2.0.1 - 2019-02-25
  - Documentation error and typos fixed.
  - Saving last response when Guzzle's `BadResponseException` exception throws.
