@@ -91,7 +91,7 @@ class FirestoreAuthentication
         ]);
 
         if ($setToken) {
-            if (!array_key_exists('idToken', $response)) {
+            if (is_array($response) && !array_key_exists('idToken', $response)) {
                 throw new BadRequest('idToken not found!');
             }
 
@@ -117,7 +117,7 @@ class FirestoreAuthentication
         ]);
 
         if ($setToken) {
-            if (!array_key_exists('idToken', $response)) {
+            if (is_array($response) && !array_key_exists('idToken', $response)) {
                 throw new BadRequest('idToken not found!');
             }
 
@@ -152,7 +152,7 @@ class FirestoreAuthentication
 
             return FirestoreHelper::decode((string) $this->client->getLastResponse()->getBody());
         } catch (BadResponseException $exception) {
-            $this->setLastResponse($exception->getResponse());
+            $this->client->setLastResponse($exception->getResponse());
             $this->handleError($exception);
         }
     }
