@@ -48,7 +48,7 @@ class FirestoreDocument {
 
         if (null !== $databaseResource) {
             if (!$databaseResource instanceof FirestoreDatabaseResource) {
-                throw new InvalidArgumentException('Instance passed must be of FirestoreDatabaseResource');
+                throw new \InvalidArgumentException('Instance passed must be of FirestoreDatabaseResource');
             }
 
             $this->databaseResource = $databaseResource;
@@ -78,6 +78,10 @@ class FirestoreDocument {
      */
     public function getCreatedTime()
     {
+        if (is_null($this->createTime)) {
+            return null;
+        }
+
         return new DateTime($this->createTime);
     }
 
@@ -86,6 +90,10 @@ class FirestoreDocument {
      */
     public function getUpdatedTime()
     {
+        if (is_null($this->updateTime)) {
+            return null;
+        }
+
         return new DateTime($this->updateTime);
     }
 
