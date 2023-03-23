@@ -14,16 +14,34 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src/</directory>
-        </whitelist>
-    </filter>
+    <coverage includeUncoveredFiles="true"
+              processUncoveredFiles="true"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+
+        <exclude>
+            <directory suffix=".php">src/generated</directory>
+            <file>src/autoload.php</file>
+        </exclude>
+
+        <report>
+            <clover outputFile="build/logs/clover.xml"/>
+            <crap4j outputFile="build/crap4j.xml" threshold="50"/>
+            <html outputDirectory="build/coverage" lowUpperBound="50" highLowerBound="90"/>
+            <php outputFile="build/coverage.php"/>
+            <text outputFile="build/coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+
+        </report>
+    </coverage>
     <logging>
-        <log type="tap" target="build/report.tap"/>
-        <log type="junit" target="build/report.junit.xml"/>
-        <log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true"/>
-        <log type="coverage-text" target="build/coverage.txt"/>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <junit outputFile="build/junit.xml"/>
+        <teamcity outputFile="build/teamcity.txt"/>
+        <testdoxHtml outputFile="build/testdox.html"/>
+        <testdoxText outputFile="build/testdox.txt"/>
+        <testdoxXml outputFile="build/testdox.xml"/>
+        <text outputFile="build/logfile.txt"/>
     </logging>
 </phpunit>
