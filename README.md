@@ -17,14 +17,14 @@ This package is totally based on [Firestore REST API](https://firebase.google.co
 You can install the package via composer:
 
 ```bash
-composer require ahsankhatri/firestore-php
+composer require bensontrent/firestore-php
 ```
 
 or install it by adding it to `composer.json` then run `composer update`
 
 ```javascript
 "require": {
-    "ahsankhatri/firestore-php": "^2.0",
+    "bensontrent/firestore-php": "^2.0",
 }
 ```
 
