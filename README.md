@@ -46,7 +46,7 @@ If you use Composer, these dependencies should be handled automatically. If you 
 
 ```php
 
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use MrShan0\PHPFirestore\FirestoreClient;
 
@@ -62,7 +62,7 @@ Make sure your Firebase Rules allow you to write to the $collection you wish to 
 
 ```php
 
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use MrShan0\PHPFirestore\FirestoreClient;
 use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
@@ -106,6 +106,9 @@ $firestoreClient->addDocument('customers', [
 Or
 
 ```php
+
+use MrShan0\PHPFirestore\FirestoreDocument;
+
 $document = new FirestoreDocument;
 $document->setObject('sdf', new FirestoreObject(['nested1' => new FirestoreObject(['nested2' => new FirestoreObject(['nested3' => 'test'])])]));
 $document->setBoolean('booleanTrue', true);
@@ -149,6 +152,8 @@ $firestoreClient->updateDocument($documentRoot, [
 For example: If you want to update document only if exist else `MrShan0\PHPFirestore\Exceptions\Client\NotFound` (Exception) will be thrown.
 
 ```php
+use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
+
 $firestoreClient->updateDocument($documentPath, [
     'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
     'existingFieldToRemove' => new FirestoreDeleteAttribute
@@ -158,6 +163,8 @@ $firestoreClient->updateDocument($documentPath, [
 - Overwirte or Insert document
 
 ```php
+use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
+
 $firestoreClient->setDocument($collection, $documentId, [
     'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
     'existingFieldToRemove' => new FirestoreDeleteAttribute
