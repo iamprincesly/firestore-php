@@ -53,11 +53,11 @@ require 'vendor/autoload.php';
 
 use MrShan0\PHPFirestore\FirestoreClient;
 
-$firestoreClient = new FirestoreClient('project-id', 'AIzaxxxxx-MY-API-KEYxxxxxxxxxxxxxxxxxxxxxxx', [
+$firestoreClient = new FirestoreClient('my-project-id', 'MY-API-KEY-xxxxxxxxxxxxxxxxxxxxxxx', [
     'database' => '(default)',
 ]);
 ```
-Note: You shouldn't need to change the  `'database' => '(default)'` line.
+Note: You likely won't need to change the  `'database' => '(default)'` line.
 
 
 #### Adding a document
@@ -68,13 +68,15 @@ Make sure your Firebase Rules allow you to write to the $collection you wish to 
 require 'vendor/autoload.php';
 
 use MrShan0\PHPFirestore\FirestoreClient;
+
+// Optional, depending on your usage
 use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
 use MrShan0\PHPFirestore\Fields\FirestoreArray;
 use MrShan0\PHPFirestore\Fields\FirestoreBytes;
 use MrShan0\PHPFirestore\Fields\FirestoreGeoPoint;
 use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
-
+use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
 
 $collection = "myCollectionName"
@@ -115,12 +117,12 @@ use MrShan0\PHPFirestore\FirestoreDocument;
 
 $document = new FirestoreDocument;
 $document->setObject('sdf', new FirestoreObject(['nested1' => new FirestoreObject(['nested2' => new FirestoreObject(['nested3' => 'test'])])]));
-$document->setBoolean('booleanTrue', true);
-$document->setBoolean('booleanFalse', false);
+$document->setBoolean('myBooleanTrue', true);
+$document->setBoolean('myBooleanFalse', false);
 $document->setNull('null', null);
-$document->setString('string', 'abc123');
-$document->setInteger('integer', 123456);
-$document->setArray('arrayRaw', ['string'=>'abc123']);
+$document->setString('myString', 'abc123');
+$document->setInteger('myInteger', 123456);
+$document->setArray('myArrayRaw', ['string'=>'abc123']);
 $document->setBytes('bytes', new FirestoreBytes('bytesdata'));
 $document->setArray('arrayObject', new FirestoreArray(['string' => 'abc123']));
 $document->setTimestamp('timestamp', new FirestoreTimestamp);
@@ -133,8 +135,9 @@ And..
 
 ```php
 $document->fillValues([
-    'string' => 'abc123',
-    'boolean' => true,
+    'myString' => 'abc123',
+    'myBoolean' => true,
+    'firstName' => 'Jane',
 ]);
 ```
 
@@ -148,7 +151,7 @@ Following will merge document (if exist) else insert the data.
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
 $firestoreClient->updateDocument($documentRoot, [
-    'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
+    'newFieldToAdd' => 'Jane Doe',
     'existingFieldToRemove' => new FirestoreDeleteAttribute
 ]);
 ```
@@ -161,7 +164,7 @@ For example: If you want to update document only if exist else `MrShan0\PHPFires
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
 $firestoreClient->updateDocument($documentPath, [
-    'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
+    'newFieldToAdd' => 'Jane Doe',
     'existingFieldToRemove' => new FirestoreDeleteAttribute
 ], true);
 ```
@@ -172,7 +175,7 @@ $firestoreClient->updateDocument($documentPath, [
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
 $firestoreClient->setDocument($collection, $documentId, [
-    'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
+    'newFieldToAdd' => 'Jane Doe',
     'existingFieldToRemove' => new FirestoreDeleteAttribute
 ], [
     'exists' => true, // Indicate document must exist
