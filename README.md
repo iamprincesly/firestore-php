@@ -1,8 +1,8 @@
 # Firestore Client for PHP without gRPC
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ahsankhatri/firestore-php.svg?style=flat-square)](https://packagist.org/packages/ahsankhatri/firestore-php)
-[![Total Downloads](https://img.shields.io/packagist/dt/ahsankhatri/firestore-php.svg?style=flat-square)](https://packagist.org/packages/ahsankhatri/firestore-php)
-[![License](https://poser.pugx.org/ahsankhatri/firestore-php/license?format=flat-square)](https://packagist.org/packages/ahsankhatri/firestore-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
+[![License](https://poser.pugx.org/bensontrent/firestore-php/license?format=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
 
 Use Google Firebase without the requirement of having the gRPC extension for php installed.  This is ideal for shared hosting environments. This package is totally based on [Firestore REST API](https://firebase.google.com/docs/firestore/use-rest-api)
 
