@@ -45,14 +45,36 @@ If you use Composer, these dependencies should be handled automatically. If you 
 #### Initialization
 
 ```php
-$firestoreClient = new FirestoreClient('project-id', 'AIzaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', [
+
+require_once 'vendor/autoload.php';
+
+use MrShan0\PHPFirestore\FirestoreClient;
+
+$firestoreClient = new FirestoreClient('project-id', 'AIzaxxxxx-MY-API-KEYxxxxxxxxxxxxxxxxxxxxxxx', [
     'database' => '(default)',
 ]);
 ```
+Note: You shouldn't need to change the  `'database' => '(default)'` line.
+
 
 #### Adding a document
+Make sure your Firebase Rules allow you to write to the $collection you wish to modify or you will get an error: `You do not have permission to access the requested resource`
 
 ```php
+
+require_once 'vendor/autoload.php';
+
+use MrShan0\PHPFirestore\FirestoreClient;
+use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
+use MrShan0\PHPFirestore\Fields\FirestoreArray;
+use MrShan0\PHPFirestore\Fields\FirestoreBytes;
+use MrShan0\PHPFirestore\Fields\FirestoreGeoPoint;
+use MrShan0\PHPFirestore\Fields\FirestoreObject;
+use MrShan0\PHPFirestore\Fields\FirestoreReference;
+
+
+$collection = "myCollectionName"
+
 $firestoreClient->addDocument($collection, [
     'booleanTrue' => true,
     'booleanFalse' => false,
@@ -70,10 +92,16 @@ $firestoreClient->addDocument($collection, [
     'object' => new FirestoreObject(['nested1' => new FirestoreObject(['nested2' => new FirestoreObject(['nested3' => 'test'])])]),
     'timestamp' => new FirestoreTimestamp,
     'geopoint' => new FirestoreGeoPoint(1,1),
-]);
+], 'myoPptional-unique-id-w32342q');
 ```
 
-**NOTE:** Pass third argument if you want your custom **document id** to set else auto-id will generate it for you.
+**NOTE:** Pass third argument if you want your custom **document id** to set else auto-id will generate it for you. For example:
+
+```php
+$firestoreClient->addDocument('customers', [
+    'firstName' => 'Jeff',
+], 'myOptionalUniqueID0123456789')
+```
 
 Or
 
