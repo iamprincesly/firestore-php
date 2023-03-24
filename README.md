@@ -81,23 +81,27 @@ use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 $collection = "myCollectionName"
 
 $firestoreClient->addDocument($collection, [
-    'booleanTrue' => true,
-    'booleanFalse' => false,
+    'myBooleanTrue' => true,
+    'myBooleanFalse' => false,
     'null' => null,
-    'string' => 'abc123',
-    'integer' => 123456,
+    'myString' => 'abc123',
+    'myInteger' => 123456,
     'arrayRaw' => [
         'string' => 'abc123',
     ],
     'bytes' => new FirestoreBytes('bytesdata'),
-    'array' => new FirestoreArray([
-        'string' => 'abc123',
+    'myArray' => new FirestoreArray([
+        'firstName' => 'Jane',
     ]),
     'reference' => new FirestoreReference('/users/23'),
-    'object' => new FirestoreObject(['nested1' => new FirestoreObject(['nested2' => new FirestoreObject(['nested3' => 'test'])])]),
+    'myObject' => new FirestoreObject(['nested1' => new FirestoreObject(
+        ['nested2' => new FirestoreObject(
+            ['nested3' => 'test'])
+        ])
+     ]),
     'timestamp' => new FirestoreTimestamp,
     'geopoint' => new FirestoreGeoPoint(1,1),
-], 'myoPptional-unique-id-w32342q');
+], 'myOptional-unique-id-w32342q');
 ```
 
 **NOTE:** Pass third argument if you want your custom **document id** to set else auto-id will generate it for you. For example:
