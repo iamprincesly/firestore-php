@@ -2,8 +2,10 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
 [![Total Installs](https://img.shields.io/packagist/dt/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
-[![Total Downloads](https://img.shields.io//github/downloads/bensontrent/firestore-php.svg?style=flat-square)](https://github.com/bensontrent/firestore-php)
+[![Total Downloads](https://img.shields.io/github/downloads/bensontrent/firestore-php/total.svg?style=flat-square)](https://github.com/bensontrent/firestore-php)
 [![License](https://poser.pugx.org/bensontrent/firestore-php/license?format=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
+
+GitHub all releases badge	/github/downloads/:user/:repo/total
 
 /github/downloads/:user/:repo/total
 
