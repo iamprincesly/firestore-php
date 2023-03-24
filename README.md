@@ -1,13 +1,11 @@
 # Firestore Client for PHP without gRPC
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
-[![Total Installs](https://img.shields.io/packagist/dt/bensontrent/firestore-php.svg?style=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
-[![Total Downloads](https://img.shields.io/github/downloads/bensontrent/firestore-php/total.svg?style=flat-square)](https://github.com/bensontrent/firestore-php)
+[![Total Installs](https://img.shields.io/packagist/dt/bensontrent/firestore-php?color=green&label=installs)](https://packagist.org/packages/bensontrent/firestore-php)
+[![Total Downloads](https://img.shields.io/github/downloads/bensontrent/firestore-php/total?color=green&label=downloads)](https://github.com/bensontrent/firestore-php)
 [![License](https://poser.pugx.org/bensontrent/firestore-php/license?format=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
+https://img.shields.io/github/downloads/bensontrent/firestore-php/total?color=green&label=Github%20Downloads
 
-GitHub all releases badge	/github/downloads/:user/:repo/total
-
-/github/downloads/:user/:repo/total
 
 Use Google Firebase without the requirement of having the gRPC extension for php installed.  This is ideal for shared hosting environments. This package is totally based on [Firestore REST API](https://firebase.google.com/docs/firestore/use-rest-api)
 
@@ -78,6 +76,7 @@ use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 
 
+
 $collection = "myCollectionName"
 
 $firestoreClient->addDocument($collection, [
@@ -146,6 +145,8 @@ $document->fillValues([
 Following will merge document (if exist) else insert the data.
 
 ```php
+use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
+
 $firestoreClient->updateDocument($documentRoot, [
     'newFieldToAdd' => new FirestoreTimestamp(new DateTime('2018-04-20 15:00:00')),
     'existingFieldToRemove' => new FirestoreDeleteAttribute
