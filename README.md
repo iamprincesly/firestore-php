@@ -78,7 +78,6 @@ use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
-
 $collection = "myCollectionName"
 
 $firestoreClient->addDocument($collection, [
@@ -116,7 +115,13 @@ Or
 use MrShan0\PHPFirestore\FirestoreDocument;
 
 $document = new FirestoreDocument;
-$document->setObject('sdf', new FirestoreObject(['nested1' => new FirestoreObject(['nested2' => new FirestoreObject(['nested3' => 'test'])])]));
+$document->setObject('myNestedObject', new FirestoreObject(
+    ['nested1' => new FirestoreObject(
+        ['nested2' => new FirestoreObject(
+            ['nested3' => 'test'])
+            ])
+        ]
+    ));
 $document->setBoolean('myBooleanTrue', true);
 $document->setBoolean('myBooleanFalse', false);
 $document->setNull('null', null);
