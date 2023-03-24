@@ -4,7 +4,7 @@
 [![Total Installs](https://img.shields.io/packagist/dt/bensontrent/firestore-php?color=green&label=installs)](https://packagist.org/packages/bensontrent/firestore-php)
 [![Total Downloads](https://img.shields.io/github/downloads/bensontrent/firestore-php/total?color=green&label=downloads)](https://github.com/bensontrent/firestore-php)
 [![License](https://poser.pugx.org/bensontrent/firestore-php/license?format=flat-square)](https://packagist.org/packages/bensontrent/firestore-php)
-https://img.shields.io/github/downloads/bensontrent/firestore-php/total?color=green&label=Github%20Downloads
+
 
 
 Use Google Firebase without the requirement of having the gRPC extension for php installed.  This is ideal for shared hosting environments. This package is totally based on [Firestore REST API](https://firebase.google.com/docs/firestore/use-rest-api)
