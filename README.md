@@ -178,6 +178,13 @@ $firestoreClient->updateDocument($documentPath, [
 ], true);
 ```
 
+format for documentPath:
+
+```
+<collectionName>/<documentName>
+```
+
+
 - Overwirte or Insert document
 
 ```php
