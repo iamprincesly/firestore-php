@@ -101,7 +101,7 @@ $firestoreClient->addDocument($collection, [
      ]),
     'timestamp' => new FirestoreTimestamp,
     'geopoint' => new FirestoreGeoPoint(1,1),
-], 'myOptional-unique-id-w32342q');
+]);
 ```
 
 **NOTE:** Pass third argument if you want your custom **document id** to set else auto-id will generate it for you. For example:
