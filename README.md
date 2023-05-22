@@ -78,7 +78,7 @@ use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
-$collection = "myCollectionName"
+$collection = 'myCollectionName';
 
 $firestoreClient->addDocument($collection, [
     'myBooleanTrue' => true,
@@ -147,6 +147,17 @@ $document->fillValues([
     'myString' => 'abc123',
     'myBoolean' => true,
     'firstName' => 'Jane',
+]);
+```
+
+####  Special characters in the field name
+
+If you want to use special characters in the field name, you have to use backticks.
+
+```php
+$document->fillValues([
+    '`teléfono`' => '1234567890',
+    '`contraseña`' => 'secretPassword',
 ]);
 ```
 
