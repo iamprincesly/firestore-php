@@ -78,7 +78,7 @@ use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 
-$collection = "myCollectionName"
+$collection = 'myCollectionName';
 
 $firestoreClient->addDocument($collection, [
     'myBooleanTrue' => true,
