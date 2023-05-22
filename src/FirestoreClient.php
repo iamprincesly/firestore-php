@@ -354,6 +354,14 @@ class FirestoreClient
         $body = '';
         $options = array_merge($this->getOptions(), $options);
 
+        if (isset($options['json']['fields'])) {
+            $options['json']['fields'] = array_reduce(
+                array_keys($options['json']['fields']),
+                fn ($result, $k) => $result + [str_replace('`', '', $k) => $options['json']['fields'][$k]],
+                []
+            );
+        }
+
         try {
             $response = $this->getHttpClient()->request($method, $this->constructUrl($path, $parameters), $options);
             $this->setLastResponse($response);
