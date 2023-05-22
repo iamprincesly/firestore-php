@@ -2,6 +2,9 @@
 
 All notable changes to `Firestore PHP` will be documented in this file.
 
+## 3.1.0 - 2023-05-22
+ - Feature: Add ability to use special characters in filenames. Thanks to PR #2 by @backendrulz 
+
 ## 3.0.0 - 2023-03-23
  - Added support for Guzzle 7
  - Added support for PHP 8
