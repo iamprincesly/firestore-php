@@ -150,6 +150,17 @@ $document->fillValues([
 ]);
 ```
 
+####  Special characters in the field name
+
+If you want to use special characters in the field name, you have to use backticks.
+
+```php
+$document->fillValues([
+    '`teléfono`' => '1234567890',
+    '`contraseña`' => 'secretPassword',
+]);
+```
+
 #### Inserting/Updating a document
 
 - Update (Merge) or Insert document
