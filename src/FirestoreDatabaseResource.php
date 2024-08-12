@@ -38,6 +38,8 @@ class FirestoreDatabaseResource
         $slashesCount = substr_count($path, '/');
         $isEvenNumber = $slashesCount % 2 == 0;
 
+
+
         if (($shouldBeOdd && $isEvenNumber) || (!$shouldBeOdd && !$isEvenNumber)) {
             throw new InvalidPathProvided($path);
         }
@@ -175,6 +177,25 @@ class FirestoreDatabaseResource
     }
 
     /**
+     * Insert a document under collection path given, When you want to add an array with nested
+     * it makes the nested arrays a FirestoreObject
+     *
+     *
+     * @param string $documentPath
+     * @param array|FirestoreDocument $payload
+     * @param string|null $documentId
+     * @param array $parameters
+     * @param array $options
+     *
+     * @return \MrShan0\PHPFirestore\FirestoreDocument
+     */
+    public function addNestedDocuments($documentPath, $payload, $documentId = null, array $parameters = [], array $options = []): \MrShan0\PHPFirestore\FirestoreDocument
+    {
+        $payload = FirestoreHelper::normalizedNestedArray($payload);
+        return $this->addDocument($documentPath, $payload, $documentId , $parameters,$options);
+    }
+
+    /**
      * It'll merge document with existing one or insert if it doesn't exist. When you want your update your
      * data and don't want to affect existing parameters, use this.
      *
@@ -206,6 +227,7 @@ class FirestoreDatabaseResource
      */
     public function setDocument($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
     {
+
         $this->validatePath($documentPath);
 
         if ($payload instanceof FirestoreDocument) {
