@@ -15,6 +15,7 @@ use MrShan0\PHPFirestore\Helpers\FirestoreHelper;
  * @method array getBatchDocuments(array $documentsId, array $parameters = [], array $options = [])
  * @method FirestoreDocument addDocument($collection, $payload, $documentId = null, array $parameters = [], array $options = [])
  * @method FirestoreDocument updateDocument($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
+ * @method FirestoreDocument addNestedDocuments($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
  * @method FirestoreDocument setDocument($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
  * @method boolean deleteDocument($document, array $options = [])
  */

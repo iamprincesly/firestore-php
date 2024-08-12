@@ -5,6 +5,7 @@ namespace MrShan0\PHPFirestore\Helpers;
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 use MrShan0\PHPFirestore\Fields\FirestoreArray;
 use MrShan0\PHPFirestore\Fields\FirestoreGeoPoint;
+use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
 use MrShan0\PHPFirestore\Fields\FirestoreBytes;
@@ -123,5 +124,25 @@ class FirestoreHelper
 
         return $type;
     }
+
+    /**
+     * This will recursively add FirestoreObject to a nested array
+     *
+     * @param  array $value
+     *
+     * @return array
+     */
+    public static function normalizedNestedArray(array $data)
+    {
+        foreach ($data as $key => $value){
+
+            if (is_array($value)) {
+                $data[$key] = new FirestoreObject(self::normalizedNestedArray($value));
+            }
+        }
+
+        return $data;
+    }
+
 
 }

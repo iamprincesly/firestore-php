@@ -161,6 +161,95 @@ $document->fillValues([
 ]);
 ```
 
+You could use `addNestedDocuments` if you have multiple nested objects 
+
+
+```php
+
+require 'vendor/autoload.php';
+
+use MrShan0\PHPFirestore\FirestoreClient;
+
+$collection = 'myCollectionName';
+
+$originalData = [
+    'name' => 'My Application',
+    'emails' => [
+        'support' => 'support@example.com',
+        'sales' => 'sales@example.com',
+    ],
+    'website' => 'https://app.example.com',
+    'myObject' => [
+        'nested1' => [
+            'name' => 'My Application',
+            'emails' => [
+                'support' => 'support@example.com',
+                'sales' => 'sales@example.com',
+            ],
+            'nested2' => [
+                'name' => 'My Application',
+                'emails' => [
+                    'support' => 'support@example.com',
+                    'sales' => 'sales@example.com',
+                ],
+                'nested3' => [
+                    'name' => 'My Application',
+                    'emails' => [
+                        'support' => 'support@example.com',
+                        'sales' => 'sales@example.com',
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+
+$firestoreClient->addNestedDocuments($collection, $originalData);
+```
+This just formats the array before using the `addDocument` function
+
+```php
+
+require 'vendor/autoload.php';
+
+use MrShan0\PHPFirestore\FirestoreClient;
+use MrShan0\PHPFirestore\Fields\FirestoreObject;
+
+$collection = 'myCollectionName';
+
+$originalData = [
+    'name' => 'My Application',
+    'emails' => new FirestoreObject( [
+        'support' => 'support@example.com',
+        'sales' => 'sales@example.com',
+    ]),
+    'website' => 'https://app.example.com',
+    'myObject' => new FirestoreObject([
+        'nested1' => new FirestoreObject([
+            'name' => 'My Application',
+            'emails' => new FirestoreObject([
+                'support' => 'support@example.com',
+                'sales' => 'sales@example.com',
+            ]),
+            'nested2' => new FirestoreObject([
+                'name' => 'My Application',
+                'emails' => new FirestoreObject([
+                    'support' => 'support@example.com',
+                    'sales' => 'sales@example.com',
+                ]),
+                'nested3' => new FirestoreObject([
+                    'name' => 'My Application',
+                    'emails' => new FirestoreObject( [
+                        'support' => 'support@example.com',
+                        'sales' => 'sales@example.com',
+                    ])
+                ])
+            ])
+        ])
+    ])
+];
+```
+
 #### Inserting/Updating a document
 
 - Update (Merge) or Insert document
