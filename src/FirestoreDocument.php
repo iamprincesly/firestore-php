@@ -217,12 +217,7 @@ class FirestoreDocument {
     public function setObject($fieldName, $value)
     {
         if ( !$value instanceof FirestoreObject ) {
-            $payload = new FirestoreObject;
-            foreach ($value as $row) {
-                $payload->add( $row );
-            }
-
-            $value = $payload;
+            $value = new FirestoreObject($value);
         }
 
         $this->fields[$fieldName] = [
@@ -243,7 +238,7 @@ class FirestoreDocument {
             $results[$key] = $this->castValue($value);
         }
 
-        return new FirestoreObject([$results]);
+        return new FirestoreObject($results);
     }
 
     /**
