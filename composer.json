@@ -1,5 +1,5 @@
 {
-    "name": "bensontrent/firestore-php",
+    "name": "iamprincesly/firestore-php",
     "description": "Firestore PHP Client without gRPC and support for Guzzle 7. Forked from archived project ahsankhatri/firestore-php",
     "keywords": [
         "php",
@@ -7,7 +7,7 @@
         "firebase",
         "google"
     ],
-    "homepage": "https://github.com/bensontrent/firestore-php",
+    "homepage": "https://github.com/iamprincesly/firestore-php",
     "license": "MIT",
     "authors": [
          {
@@ -44,7 +44,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
