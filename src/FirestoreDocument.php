@@ -484,28 +484,30 @@ class FirestoreDocument {
     {
         $parsedValue = '';
 
-        if ( array_key_exists('stringValue', $value ) ) {
-            $parsedValue = $this->getString($value);
-        } else if ( array_key_exists('arrayValue', $value ) ) {
-            $parsedValue = $this->getArray($value);
-        } else if ( array_key_exists('integerValue', $value ) ) {
-            $parsedValue = $this->getInteger($value);
-        } else if ( array_key_exists('doubleValue', $value ) ) {
-            $parsedValue = $this->getDouble($value);
-        } else if ( array_key_exists('booleanValue', $value ) ) {
-            $parsedValue = $this->getBoolean($value);
-        } else if ( array_key_exists('nullValue', $value ) ) {
-            $parsedValue = $this->getNull($value);
-        } else if ( array_key_exists('mapValue', $value ) ) {
-            $parsedValue = $this->getObject($value);
-        } else if ( array_key_exists('referenceValue', $value ) ) {
-            $parsedValue = $this->getReference($value);
-        } else if ( array_key_exists('geoPointValue', $value ) ) {
-            $parsedValue = $this->getGeoPoint($value);
-        } else if ( array_key_exists('timestampValue', $value ) ) {
-            $parsedValue = $this->getTimestamp($value);
-        } else if ( array_key_exists('bytesValue', $value ) ) {
-            $parsedValue = $this->getBytes($value);
+        if (is_array($value)) {
+            if ( array_key_exists('stringValue', $value ) ) {
+                $parsedValue = $this->getString($value);
+            } else if ( array_key_exists('arrayValue', $value ) ) {
+                $parsedValue = $this->getArray($value);
+            } else if ( array_key_exists('integerValue', $value ) ) {
+                $parsedValue = $this->getInteger($value);
+            } else if ( array_key_exists('doubleValue', $value ) ) {
+                $parsedValue = $this->getDouble($value);
+            } else if ( array_key_exists('booleanValue', $value ) ) {
+                $parsedValue = $this->getBoolean($value);
+            } else if ( array_key_exists('nullValue', $value ) ) {
+                $parsedValue = $this->getNull($value);
+            } else if ( array_key_exists('mapValue', $value ) ) {
+                $parsedValue = $this->getObject($value);
+            } else if ( array_key_exists('referenceValue', $value ) ) {
+                $parsedValue = $this->getReference($value);
+            } else if ( array_key_exists('geoPointValue', $value ) ) {
+                $parsedValue = $this->getGeoPoint($value);
+            } else if ( array_key_exists('timestampValue', $value ) ) {
+                $parsedValue = $this->getTimestamp($value);
+            } else if ( array_key_exists('bytesValue', $value ) ) {
+                $parsedValue = $this->getBytes($value);
+            }
         }
 
         return $parsedValue;
