@@ -80,6 +80,55 @@ class FirestoreAuthentication
      *
      * @return object
      */
+    public function signInWithPassword($email, $password, $setToken = true)
+    {
+        $response = $this->authRequest('POST', 'signInWithPassword', [
+            'form_params' => [
+                'email' => $email,
+                'password' => $password,
+                'returnSecureToken' => 'true',
+            ]
+        ]);
+
+        return $this->getResponse($response, $setToken);
+    }
+
+    /**
+     * Sign up with email and password into Firebase Authentication
+     *
+     * @param ?string $email
+     * @param ?string $password
+     * @param boolean $setToken
+     *
+     * @return object
+     */
+    public function signUpWithEmailPassword(?string $email = null, ?string $password = null, bool $setToken = true)
+    {
+        $formData = [
+            'form_params' => [
+                'returnSecureToken' => 'true',
+            ]
+        ];
+
+        if (is_null($email) && is_null($password)) {
+            $formData['form_params']['email'] = $email;
+            $formData['form_params']['password'] = $password;
+        }
+
+        $response = $this->authRequest('POST', 'signUp', $formData);
+
+        return $this->getResponse($response, $setToken);
+    }
+
+    /**
+     * Login with email and password into Firebase Authentication
+     *
+     * @param string $email
+     * @param string $password
+     * @param boolean $setToken
+     *
+     * @return object
+     */
     public function signInEmailPassword($email, $password, $setToken = true)
     {
         $response = $this->authRequest('POST', 'verifyPassword', [
@@ -90,15 +139,7 @@ class FirestoreAuthentication
             ]
         ]);
 
-        if ($setToken) {
-            if (is_array($response) && !array_key_exists('idToken', $response)) {
-                throw new BadRequest('idToken not found!');
-            }
-
-            $this->setCustomToken($response['idToken']);
-        }
-
-        return $response;
+        return $this->getResponse($response, $setToken);
     }
 
     /**
@@ -116,6 +157,11 @@ class FirestoreAuthentication
             ]
         ]);
 
+        return $this->getResponse($response, $setToken);
+    }
+
+    private function getResponse($response, $setToken = true)
+    {
         if ($setToken) {
             if (is_array($response) && !array_key_exists('idToken', $response)) {
                 throw new BadRequest('idToken not found!');
