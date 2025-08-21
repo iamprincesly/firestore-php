@@ -15,7 +15,14 @@ class FirestoreAuthentication
      *
      * @var string
      */
-    private $authRoot = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
+    private $authRoot = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+
+    /**
+     * Firestore identity token
+     *
+     * @var string
+     */
+    private ?string $idToken = null;
 
     /**
      * Firestore Client object
@@ -50,6 +57,8 @@ class FirestoreAuthentication
      */
     public function setCustomToken($token)
     {
+        $this->idToken = $token;
+
         return $this->client->setOption('headers', [
             'Authorization' => 'Bearer ' . $token,
         ]);
@@ -94,6 +103,34 @@ class FirestoreAuthentication
     }
 
     /**
+     * Sign in with OAuth credential
+     * https://firebase.google.com/docs/reference/rest/auth#section-sign-in-with-oauth-credential
+     *
+     * @param string $email
+     * @param string $password
+     * @param boolean $setToken
+     *
+     * @return object
+     */
+    public function signInWithIdp($email, $requestUri, $clientID, $setToken = true)
+    {
+        $response = $this->authRequest('POST', 'signInWithIdp', [
+            'form_params' => [
+                'requestUri' => $requestUri,
+                'email' => $email,
+                'postBody' => [
+                    'id_token' => $clientID,
+                    'providerId' => 'iamprincesly@gmail.com',
+                ],
+                'returnSecureToken' => 'true',
+                'returnIdpCredential' => 'true'
+            ]
+        ]);
+
+        return $this->getResponse($response, $setToken);
+    }
+
+    /**
      * Sign up with email and password into Firebase Authentication
      *
      * @param ?string $email
@@ -110,7 +147,7 @@ class FirestoreAuthentication
             ]
         ];
 
-        if (is_null($email) && is_null($password)) {
+        if (!is_null($email) && !is_null($password)) {
             $formData['form_params']['email'] = $email;
             $formData['form_params']['password'] = $password;
         }
@@ -158,6 +195,26 @@ class FirestoreAuthentication
         ]);
 
         return $this->getResponse($response, $setToken);
+    }
+
+    /**
+     * Fetch logged in user
+     *
+     * @return array
+     */
+    public function getAuthUser()
+    {
+        if (!$this->idToken) {
+            throw new BadRequest('idToken not set, please sign in.!');
+        }
+
+        $response = $this->authRequest('POST', 'lookup', [
+            'form_params' => [
+                'idToken' => $this->idToken,
+            ]
+        ]);
+
+        return $response['users'][0];
     }
 
     private function getResponse($response, $setToken = true)
